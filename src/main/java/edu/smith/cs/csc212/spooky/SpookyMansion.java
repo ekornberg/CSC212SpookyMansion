@@ -5,7 +5,6 @@ import java.util.Map;
 
 /**
  * SpookyMansion, the game.
- * @author jfoley
  *
  */
 public class SpookyMansion implements GameWorld {
@@ -78,8 +77,9 @@ public class SpookyMansion implements GameWorld {
 		Place secretRoom = insert(Place.create("secretRoom", "You have found the secret room."));
 		secretRoom.addExit(new Exit("labyrinth0", "There is door with a skull on it... "+EMOJI_SKULL));
 		secretRoom.addExit(new Exit("hallway0", "There is a long hallway."));
+		secretRoom.addExit( new Exit("basement", "Head to the basement."));
 
-		int hallwayDepth = 3;
+		int hallwayDepth = 4;
 		int lastHallwayPart = hallwayDepth - 1;
 		for (int i = 0; i < hallwayDepth; i++) {
 			Place hallwayPart = insert(Place.create("hallway" + i, "This is a very long hallway."));
@@ -88,6 +88,7 @@ public class SpookyMansion implements GameWorld {
 			} else {
 				hallwayPart.addExit(new Exit("hallway" + (i - 1), "Go back."));
 			}
+			// if not last hall way part, can keep going fwd
 			if (i != lastHallwayPart) {
 				hallwayPart.addExit(new Exit("hallway" + (i + 1), "Go forward."));
 			} else {

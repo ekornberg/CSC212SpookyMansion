@@ -21,7 +21,9 @@ public class InteractiveFiction {
 	static String runGame(TextInput input, GameWorld game) {
 		// This is the current location of the player (initialize as start).
 		Player player = new Player(game.getStart());
-
+		
+		// help thing
+		
 		// Play the game until quitting.
 		// This is too hard to express here, so we just use an infinite loop with breaks.
 		while (true) {
@@ -31,6 +33,12 @@ public class InteractiveFiction {
 			System.out.println();
 			System.out.println("... --- ...");
 			System.out.println(here.getDescription());
+			
+			// this place feels familiar thing?? but will need more
+			if (player.hasBeenHereBefore()) {
+				System.out.println("This place feels familiar...");			
+			}
+			player.rememberThisPlace();
 
 			// Game over after print!
 			if (here.isTerminalState()) {

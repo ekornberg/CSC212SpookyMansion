@@ -92,6 +92,7 @@ public class Exit {
 	public void search() {
 		// DO NOT CHANGE THIS METHOD. ONLY OVERRIDE IN A SUBCLASS.
 		// Does nothing.
+		/// meant for secretExit
 	}
 	
 	/**
