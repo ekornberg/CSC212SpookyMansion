@@ -32,7 +32,7 @@ public class InteractiveFiction {
 			
 			System.out.println();
 			System.out.println("... --- ...");
-			System.out.println(here.getDescription());
+			here.printDescription();
 			
 			// This place feels familiar if player has been here before
 			if (player.hasBeenHereBefore()) {
@@ -74,22 +74,32 @@ public class InteractiveFiction {
 				}
 			}
 			
+			// Help gives player basic information about game.
 			if (action.equals("help")) {
-				System.out.println("To navigate the mansion, type in the number listed next to the command and hit enter.");
+				System.out.println("To navigate the building, type in the number listed next to the command and hit enter.");
 				System.out.println("To quit the game, type in and hit enter on one of these commands: quit, escape, or q.");
 					// go to the top of the game loop!
 									//continue;
 				}
-
+			
+			// Player searches room for any secret exits
 			if (action.equals("search")) {
 				System.out.println("You search the room for additional exits");
 				here.search();
 			}			
 			
+			// Player takes and keeps items 
 			if (action.equals("take")) {
 				System.out.println("You pick up the item!");
+				// Add to player's stuff list
 				player.keep(here.roomStuff());
+				// Remove from list of stuff in room
 				here.take();				
+			}
+			
+			// Player's stuff
+			if (action.equals("stuff")) {
+				player.stuff();
 			}
 			
 			// From here on out, what they typed better be a number!

@@ -16,7 +16,7 @@ public class Place {
 	private List<Exit> exits;
 	
 	/**
-	 * This is the stuff in the room
+	 * This is the stuff in the room.
 	 */
 	public List<String> roomStuff;
 	
@@ -44,6 +44,7 @@ public class Place {
 		this.description = description;
 		this.exits = new ArrayList<>();
 		this.terminal = terminal;
+		this.roomStuff = new ArrayList<>();
 	}
 	
 	/**
@@ -52,6 +53,24 @@ public class Place {
 	 */
 	public void addExit(Exit exit) {
 		this.exits.add(exit);
+	}
+	
+	// List of items in room
+	public List<String> roomStuff() {		
+		return roomStuff; 
+	}
+	
+	// When take item, clear list of items in room.
+	public void take() {
+		this.roomStuff.clear();
+	}
+	
+	/*
+	 * Create an item for players to collect.
+	 * @param id - identify what item this is.
+	 */
+	public void addItem(String id) {
+		this.roomStuff.add(id);
 	}
 	
 	/**
@@ -72,10 +91,13 @@ public class Place {
 	
 	/**
 	 * The narrative description of this place.
-	 * @return what we show to a player about this place.
-	 */
-	public String getDescription() {
-		return this.description;
+	 * It also tells the player if there is an item in the room that they can take.
+	 */	
+	public void printDescription() {
+		System.out.println(this.description);
+		for (String item : this.roomStuff) {
+			System.out.println("There is a " + item);
+		}
 	}
 
 	/**
@@ -92,7 +114,7 @@ public class Place {
 		return visible;
 	}
 	
-	//  Make a void search() method on Place that calls search() on all of its exits.
+	//  Void search() calls search() on all of its exits.
 	public void search() {
 		for (Exit e : this.exits) {
 			e.search();
@@ -141,16 +163,5 @@ public class Place {
 			return this.id.equals(((Place) other).id);
 		}
 		return false;
-	}
-	
-	public List<String> roomStuff() {		
-		return roomStuff; 
-	}
-	
-	public void take() {
-		this.roomStuff.clear();
-	}
-	
-	
-	
+	}	
 }

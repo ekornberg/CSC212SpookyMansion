@@ -4,7 +4,7 @@ package edu.smith.cs.csc212.spooky;
 	import java.util.Map;
 
 	/**
-	 * Spookylibrary, the game.
+	 * Scary Library, the game.
 	 *
 	 */
 	public class ScaryLibrary implements GameWorld {
@@ -41,7 +41,7 @@ package edu.smith.cs.csc212.spooky;
 							+ "You get the sense a secret is nearby, but you only see the stairs you came from."));
 			cellar.addExit(new Exit("lobby", "There are stairs leading up."));
 			cellar.addExit(new Exit("sinkhole", "There is a sunken hole in the floor that you could climb into..."));
-			cellar.addExit(new Exit("history", "There is an area of books with biographies and secrets of the past."));		
+			cellar.addExit(new Exit("history", "There is a history area filled with biographies and secrets of the past."));		
 
 			Place history = insert(Place.create("history", "There is an area of books with biographies and secrets of the past."));
 			history.addExit(new Exit("cellar", "You see the cellar."));
@@ -56,17 +56,16 @@ package edu.smith.cs.csc212.spooky;
 			antique.addExit(new Exit("lobby", "There are stairs leading down."));
 			antique.addExit(new Exit("fiction", "There is more through an archway."));
 
-			Place fiction = insert(Place.create("fiction", "There's tales of unicorns and fairytales here.\n"
+			Place fiction = insert(Place.create("fiction", "You're in the fiction section. There are tales of unicorns and fairytales here.\n"
 					+ "This part of the attic is brighter, so maybe you're safe here."));
 			fiction.addExit(new Exit("fiction", "There is more back through the archway."));
 			fiction.addExit(new Exit("balcony", "There is a balcony."));
 			fiction.addExit(new Exit("spiral", "There is a spiral staircase."));
-			fiction.addExit(new Exit("rare", "There is a section of books you've never heard of before. Hmm."));
+			fiction.addExit(new Exit("rare", "There is a section of books you've never heard of before. They seem to be rare books. Hmm."));
 			
-			Place rare = insert(Place.create("rare", "There are many books you've never even heard of.\n"+
-			"A flash of metal catches your eye. You see a worn-in key resting on one of the shelves."));
-			
+			Place rare = insert(Place.create("rare", "There are many books you've never even heard of. They seem to be rare books."));
 			rare.addExit(new Exit("antique", "There's more beyond this area."));
+			rare.addItem("key");
 
 			Place balcony = insert(Place.create("balcony", "The night is pitch-black."));
 			balcony.addExit(new Exit("antique", "Return to the fiction section."));
@@ -84,7 +83,7 @@ package edu.smith.cs.csc212.spooky;
 			spiral.addExit(new Exit("circulation", "Walk to the landing in the middle."));
 			spiral.addExit(new Exit("antique", "Walk to the top of the stairs."));
 
-			Place science = insert(Place.create("science", "You have found the science room."));
+			Place science = insert(Place.create("science", "You have found the science section."));
 			science.addExit(new Exit("tunnel0", "There is door with a skull on it... "+EMOJI_SKULL));
 			science.addExit(new Exit("hallway0", "There is a long hallway."));
 			science.addExit( new Exit("cellar", "Head to the cellar."));
@@ -98,7 +97,7 @@ package edu.smith.cs.csc212.spooky;
 				} else {
 					hallwayPart.addExit(new Exit("hallway" + (i - 1), "Go back."));
 				}
-				// if not last hall way part, can keep going fwd
+				// If not in last part of hall, can keep going forward.
 				if (i != lastHallwayPart) {
 					hallwayPart.addExit(new Exit("hallway" + (i + 1), "Go forward.\n" +
 							"You feel the number " + (i + 1) + " scratched into the wall."));

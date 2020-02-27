@@ -60,6 +60,7 @@ public class SpookyMansion implements GameWorld {
 		attic2.addExit(new Exit("attic", "There is more back through the archway."));
 		attic2.addExit(new Exit("balcony", "There is a balcony."));
 		attic2.addExit(new Exit("dumbwaiter", "There is a dumbwaiter."));
+		// Add new exit in the attic
 		attic2.addExit(new Exit("cupboard", "There is a cupboard."));
 		
 		Place cupboard = insert(Place.create("cupboard", "There is a cupboard."));
@@ -95,10 +96,9 @@ public class SpookyMansion implements GameWorld {
 			} else {
 				hallwayPart.addExit(new Exit("hallway" + (i - 1), "Go back."));
 			}
-			// if not last hall way part, can keep going fwd
+			// If not in last part of hall, can keep going forward
 			if (i != lastHallwayPart) {
 				hallwayPart.addExit(new Exit("hallway" + (i + 1), "Go forward."));
-				//TODO: System.out.println("You are in section" + (i + 1) + "of the hall");
 			} else {
 				hallwayPart.addExit(new Exit("crypt", "There is darkness ahead."));
 			}
@@ -138,9 +138,6 @@ public class SpookyMansion implements GameWorld {
 		labyrinth3.addExit(new Exit("entranceHall", "Go South."));	
 		labyrinth3.addExit(new Exit("labyrinth0", "Go West."));
 		
-
-
-
 		// Make sure your graph makes sense!
 		checkAllExitsGoSomewhere();
 	}

@@ -1,6 +1,7 @@
 package edu.smith.cs.csc212.spooky;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,10 +18,13 @@ public class Player {
 	 */
 	private String place;
 
+	// Places that player has visited.
 	private Set<String> visited;
 	
+	// Does player have key?
 	private boolean haveKey;
 	
+	// List of player's items
 	private List<String> myStuff;
 	
 	/**
@@ -30,18 +34,22 @@ public class Player {
 	public Player(String initialPlace) {
 		this.place = initialPlace;
 		this.visited = new HashSet<>();
+		this.myStuff = new ArrayList<>();
 	}
 	
+	// What items does player have?
 	public void stuff() {
+		// If player doesn't have any items
 		if (!haveStuff()) {
 			System.out.println("You have nothing.");
 		} else {
-			System.out.print("You have");
+			System.out.print("You have: ");
 			for (String item : myStuff)
-				System.out.print(" " + item + "and");
+				System.out.print(item);
 		}
 	}
 	
+	// Does player have stuff?
 	private boolean haveStuff() {
 		if (myStuff.isEmpty()) {
 			return false;
@@ -50,7 +58,8 @@ public class Player {
 		}		
 	}
 	
-	public void keep(List<String> roomStuff) {
+	// When player takes item, add it to list of player's stuff
+	public void keep(List<String> roomStuff) { 
 		myStuff.addAll(roomStuff);
 	}
 	
