@@ -32,6 +32,7 @@ public class InteractiveFiction {
 			
 			System.out.println();
 			System.out.println("... --- ...");
+			here.printDescription();
 			
 			// This place feels familiar if player has been here before
 			if (player.hasBeenHereBefore()) {

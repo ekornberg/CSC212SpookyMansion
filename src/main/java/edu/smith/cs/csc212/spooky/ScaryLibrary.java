@@ -110,9 +110,10 @@ package edu.smith.cs.csc212.spooky;
 			Place crypt = insert(Place.terminal("crypt", "You have found the crypt.\n"
 					+ "It is scary here, but there is an exit to outside.\n" + "Maybe you'll be safe out there."));
 			
-			Place secretExit = insert(Place.terminal("secretExit", "It is scary here, but there is an exit to outside.\\n\" + \"Maybe you'll be safe out there.\""));			
+			// The secret exit
+			Place secretExit = insert(Place.terminal("secretExit", "You have found the crypt.\n"
+					+ "It is scary here, but there is an exit to outside.\n" + "Maybe you'll be safe out there."));			
 			secretExit.addExit(new Exit("crypt", "There is darkness ahead."));
-			
 			
 			String labyrinthDescription = "You see four hallways stretching out into the mist.\n"
 					+ "On the ground, there is tile shaped like a compass.";
