@@ -32,7 +32,7 @@ public class SpookyMansion implements GameWorld {
 
 		String EMOJI_SKULL = "\uD83D\uDC80";
 		Place closet = insert(Place.create("closet", "On the wall is scratched a series of letters and a skull icon ("+EMOJI_SKULL+").\n"
-				+ "North.. North.. East.. South.\n" 
+				+ "East.. South.. West.. North.\n" 
 				+ "What could it mean?"));
 		closet.addExit(new Exit("entranceHall", "Go back."));
 
@@ -41,6 +41,10 @@ public class SpookyMansion implements GameWorld {
 						+ "You get the sense a secret is nearby, but you only see the stairs you came from."));
 		basement.addExit(new Exit("entranceHall", "There are stairs leading up."));
 		basement.addExit(new Exit("fallingPit", "There appears to be a pit in the center of the room you could climb into..."));
+		basement.addExit(new Exit("washroom", "There is an old set tub with a leaky faucet."));		
+
+		Place washroom = insert(Place.create("washroom", "There is an old set tub with a leaky faucet."));
+		washroom.addExit(new Exit("basement", "You see the basement."));
 		
 		Place fallingPit = insert(
 				Place.create("fallingPit", "I don't know what you were thinking..."));
@@ -56,8 +60,11 @@ public class SpookyMansion implements GameWorld {
 		attic2.addExit(new Exit("attic", "There is more back through the archway."));
 		attic2.addExit(new Exit("balcony", "There is a balcony."));
 		attic2.addExit(new Exit("dumbwaiter", "There is a dumbwaiter."));
-
+		attic2.addExit(new Exit("cupboard", "There is a cupboard."));
 		
+		Place cupboard = insert(Place.create("cupboard", "There is a cupboard."));
+		cupboard.addExit(new Exit("attic2", "There's more in the attic."));
+
 		Place balcony = insert(Place.create("balcony", "The night is pitch-black."));
 		balcony.addExit(new Exit("attic2", "Return to the attic."));
 		balcony.addExit(new Exit("jump", "You could jump off, but you can't see the ground."));
@@ -91,6 +98,7 @@ public class SpookyMansion implements GameWorld {
 			// if not last hall way part, can keep going fwd
 			if (i != lastHallwayPart) {
 				hallwayPart.addExit(new Exit("hallway" + (i + 1), "Go forward."));
+				//TODO: System.out.println("You are in section" + (i + 1) + "of the hall");
 			} else {
 				hallwayPart.addExit(new Exit("crypt", "There is darkness ahead."));
 			}
@@ -106,23 +114,23 @@ public class SpookyMansion implements GameWorld {
 		Place labyrinth2 = insert(Place.create("labyrinth2", labyrinthDescription));
 		Place labyrinth3 = insert(Place.create("labyrinth3", labyrinthDescription));
 		
-		// solution: North.
-		labyrinth0.addExit(new Exit("labyrinth1", "Go North."));
-		labyrinth0.addExit(new Exit("labyrinth0", "Go East."));
+		// solution: East.
+		labyrinth0.addExit(new Exit("labyrinth0", "Go North."));
+		labyrinth0.addExit(new Exit("labyrinth1", "Go East."));
 		labyrinth0.addExit(new Exit("labyrinth0", "Go South."));
 		labyrinth0.addExit(new Exit("labyrinth0", "Go West."));
 		
-		// solution: North.
-		labyrinth1.addExit(new Exit("labyrinth2", "Go North."));
+		// solution: South.
+		labyrinth1.addExit(new Exit("labyrinth0", "Go North."));
 		labyrinth1.addExit(new Exit("labyrinth0", "Go East."));
-		labyrinth1.addExit(new Exit("labyrinth0", "Go South."));
+		labyrinth1.addExit(new Exit("labyrinth2", "Go South."));
 		labyrinth1.addExit(new Exit("labyrinth0", "Go West."));
 		
-		// solution: East.
+		// solution: West.
 		labyrinth2.addExit(new Exit("labyrinth0", "Go North."));
-		labyrinth2.addExit(new Exit("labyrinth3", "Go East."));
+		labyrinth2.addExit(new Exit("labyrinth0", "Go East."));
 		labyrinth2.addExit(new Exit("labyrinth0", "Go South."));
-		labyrinth2.addExit(new Exit("labyrinth0", "Go West."));
+		labyrinth2.addExit(new Exit("labyrinth3", "Go West."));
 		
 		// solution: South.
 		labyrinth3.addExit(new Exit("labyrinth0", "Go North."));

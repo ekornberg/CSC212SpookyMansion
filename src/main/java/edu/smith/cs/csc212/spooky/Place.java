@@ -14,6 +14,12 @@ public class Place {
 	 * This is a list of places we can get to from this place.
 	 */
 	private List<Exit> exits;
+	
+	/**
+	 * This is the stuff in the room
+	 */
+	public List<String> roomStuff;
+	
 	/**
 	 * This is the identifier of the place.
 	 */
@@ -86,6 +92,13 @@ public class Place {
 		return visible;
 	}
 	
+	//  Make a void search() method on Place that calls search() on all of its exits.
+	public void search() {
+		for (Exit e : this.exits) {
+			e.search();
+			}
+		}
+	
 	/**
 	 * This is a terminal location (good or bad).
 	 * @param id - this is the id of the place (for creating {@link Exit} objects that go here).
@@ -129,5 +142,15 @@ public class Place {
 		}
 		return false;
 	}
+	
+	public List<String> roomStuff() {		
+		return roomStuff; 
+	}
+	
+	public void take() {
+		this.roomStuff.clear();
+	}
+	
+	
 	
 }

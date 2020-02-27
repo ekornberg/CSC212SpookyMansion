@@ -2,6 +2,8 @@ package edu.smith.cs.csc212.spooky;
 
 import java.util.List;
 
+// https://github.com/jjfiv/CSC212SpookyMansion
+
 /**
  * This is our main class for SpookyMansion.
  * It interacts with a GameWorld and handles user-input.
@@ -21,9 +23,7 @@ public class InteractiveFiction {
 	static String runGame(TextInput input, GameWorld game) {
 		// This is the current location of the player (initialize as start).
 		Player player = new Player(game.getStart());
-		
-		// help thing
-		
+				
 		// Play the game until quitting.
 		// This is too hard to express here, so we just use an infinite loop with breaks.
 		while (true) {
@@ -34,7 +34,7 @@ public class InteractiveFiction {
 			System.out.println("... --- ...");
 			System.out.println(here.getDescription());
 			
-			// this place feels familiar thing?? but will need more
+			// This place feels familiar if player has been here before
 			if (player.hasBeenHereBefore()) {
 				System.out.println("This place feels familiar...");			
 			}
@@ -64,7 +64,7 @@ public class InteractiveFiction {
 			// Do not uppercase action -- I have lowercased it.
 			String action = words.get(0).toLowerCase().trim();
 
-			if (action.equals("quit")) {
+			if (action.equals("quit") || action.equals("escape") || action.equals("q")) {
 				if (input.confirm("Are you sure you want to quit?")) {
 					// quit!
 					break;
@@ -73,7 +73,25 @@ public class InteractiveFiction {
 					continue;
 				}
 			}
+			
+			if (action.equals("help")) {
+				System.out.println("To navigate the mansion, type in the number listed next to the command and hit enter.");
+				System.out.println("To quit the game, type in and hit enter on one of these commands: quit, escape, or q.");
+					// go to the top of the game loop!
+									//continue;
+				}
 
+			if (action.equals("search")) {
+				System.out.println("You search the room for additional exits");
+				here.search();
+			}			
+			
+			if (action.equals("take")) {
+				System.out.println("You pick up the item!");
+				player.keep(here.roomStuff());
+				here.take();				
+			}
+			
 			// From here on out, what they typed better be a number!
 			Integer exitNum = null;
 			try {
@@ -94,10 +112,9 @@ public class InteractiveFiction {
 				player.moveTo(destination.getTarget());
 			} else {
 				// TODO: some kind of message about it being locked?
-			}
+				}
 		}
-
-		return player.getPlace();
+			return player.getPlace();
 	}
 
 	/**
@@ -109,7 +126,7 @@ public class InteractiveFiction {
 		TextInput input = TextInput.fromArgs(args);
 
 		// This is the game we're playing.
-		GameWorld game = new SpookyMansion();
+		GameWorld game = new ScaryLibrary();
 
 		// Actually play the game.
 		runGame(input, game);
