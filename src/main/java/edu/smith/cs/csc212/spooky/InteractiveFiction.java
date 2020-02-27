@@ -32,7 +32,6 @@ public class InteractiveFiction {
 			
 			System.out.println();
 			System.out.println("... --- ...");
-			here.printDescription();
 			
 			// This place feels familiar if player has been here before
 			if (player.hasBeenHereBefore()) {
@@ -79,13 +78,14 @@ public class InteractiveFiction {
 				System.out.println("To navigate the building, type in the number listed next to the command and hit enter.");
 				System.out.println("To quit the game, type in and hit enter on one of these commands: quit, escape, or q.");
 					// go to the top of the game loop!
-									//continue;
+					continue;
 				}
 			
 			// Player searches room for any secret exits
 			if (action.equals("search")) {
-				System.out.println("You search the room for additional exits");
+				System.out.println("You search the room for additional exits.");
 				here.search();
+				continue;
 			}			
 			
 			// Player takes and keeps items 
@@ -100,6 +100,7 @@ public class InteractiveFiction {
 			// Player's stuff
 			if (action.equals("stuff")) {
 				player.stuff();
+				continue;
 			}
 			
 			// From here on out, what they typed better be a number!

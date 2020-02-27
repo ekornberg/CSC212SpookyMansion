@@ -21,11 +21,8 @@ public class Player {
 	// Places that player has visited.
 	private Set<String> visited;
 	
-	// Does player have key?
-	private boolean haveKey;
-	
 	// List of player's items
-	private List<String> myStuff;
+	public List<String> myStuff;
 	
 	/**
 	 * A player is created at the start of a game with just an initial place.

@@ -41,11 +41,10 @@ package edu.smith.cs.csc212.spooky;
 							+ "You get the sense a secret is nearby, but you only see the stairs you came from."));
 			cellar.addExit(new Exit("lobby", "There are stairs leading up."));
 			cellar.addExit(new Exit("sinkhole", "There is a sunken hole in the floor that you could climb into..."));
-			cellar.addExit(new Exit("history", "There is a history area filled with biographies and secrets of the past."));		
+			cellar.addExit(new Exit("history", "There is a history section filled with biographies and mysteries of the past."));		
 
-			Place history = insert(Place.create("history", "There is an area of books with biographies and secrets of the past."));
-			history.addExit(new Exit("cellar", "You see the cellar."));
-			history.addExit(new SecretExit("secretExit", "You found a secret exit!"));
+			Place history = insert(Place.create("history", "There is a section of books with biographies and mysteries of the past."));
+			history.addExit(new Exit("cellar", "You see a way to the cellar."));
 			
 			Place fallingsinkhole = insert(
 					Place.create("sinkhole", "I don't know what you were thinking..."));
@@ -62,6 +61,8 @@ package edu.smith.cs.csc212.spooky;
 			fiction.addExit(new Exit("balcony", "There is a balcony."));
 			fiction.addExit(new Exit("spiral", "There is a spiral staircase."));
 			fiction.addExit(new Exit("rare", "There is a section of books you've never heard of before. They seem to be rare books. Hmm."));
+			// The secret exit is here.
+			fiction.addExit(new SecretExit("secretExit", "You found a secret exit!"));
 			
 			Place rare = insert(Place.create("rare", "There are many books you've never even heard of. They seem to be rare books."));
 			rare.addExit(new Exit("antique", "There's more beyond this area."));
@@ -108,7 +109,11 @@ package edu.smith.cs.csc212.spooky;
 
 			Place crypt = insert(Place.terminal("crypt", "You have found the crypt.\n"
 					+ "It is scary here, but there is an exit to outside.\n" + "Maybe you'll be safe out there."));
-
+			
+			Place secretExit = insert(Place.terminal("secretExit", "It is scary here, but there is an exit to outside.\\n\" + \"Maybe you'll be safe out there.\""));			
+			secretExit.addExit(new Exit("crypt", "There is darkness ahead."));
+			
+			
 			String labyrinthDescription = "You see four hallways stretching out into the mist.\n"
 					+ "On the ground, there is tile shaped like a compass.";
 			Place tunnel0 = insert(Place.create("tunnel0", labyrinthDescription));

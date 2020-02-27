@@ -1,5 +1,7 @@
 package edu.smith.cs.csc212.spooky;
 
+import java.util.List;
+
 public class SecretExit extends Exit{
 	
 	// Secret exit is hidden
@@ -19,5 +21,5 @@ public class SecretExit extends Exit{
 	@Override 
 	public boolean isSecret() { 
 		return hidden; 
-		}
+		}	
 }
