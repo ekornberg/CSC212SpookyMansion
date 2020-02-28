@@ -24,7 +24,6 @@ public class LockedExit extends Exit {
 			System.out.print("I see you have a key. Let's unlock the door.");
 			return true;
 		} else {
-			System.out.println("The door seems to be locked. Maybe you can find a key?");
 			return false;
 		}
 	}
