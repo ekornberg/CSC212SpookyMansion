@@ -29,6 +29,7 @@ package edu.smith.cs.csc212.spooky;
 			lobby.addExit(new Exit("fiction", "There are stairs leading up."));
 			lobby.addExit(new Exit("circulation", "There is a wide door."));
 			lobby.addExit(new Exit("reading", "There is a narrow door."));
+			lobby.addItem("one left shoe");
 
 			String EMOJI_SKULL = "\uD83D\uDC80";
 			Place reading = insert(Place.create("reading", 
@@ -37,6 +38,7 @@ package edu.smith.cs.csc212.spooky;
 					+ "East.. South.. West.. South.\n" 
 					+ "What could it mean?"));
 			reading.addExit(new Exit("lobby", "Go back."));
+			reading.addItem("mouse");
 
 			Place cellar = insert(
 					Place.create("cellar", "You have found the cellar of the library.\n"
@@ -57,6 +59,7 @@ package edu.smith.cs.csc212.spooky;
 					"Something rustles in the rafters as you enter the antique section. Creepy.\n"));
 			antique.addExit(new Exit("lobby", "There are stairs leading down."));
 			antique.addExit(new Exit("fiction", "There is more through an archway."));
+			antique.addItem("teacup");
 
 			Place fiction = insert(Place.create("fiction", "You're in the fiction section. There are tales of unicorns and fairytales here.\n"
 					+ "This part of the attic is brighter, so maybe you're safe here."));
@@ -82,6 +85,7 @@ package edu.smith.cs.csc212.spooky;
 							"There are cobwebs and spiders. You wonder if anyone has been here in a while."));
 			circulation.addExit(new Exit("lobby", "There is a wide door."));
 			circulation.addExit(new Exit("spiral", "There is a spiral staircase."));
+			circulation.addItem("loose old crayons");
 
 			Place spiral = insert(Place.create("spiral", "You make your way to a spiral staircase. What are you doing?"));
 			spiral.addExit(new Exit("science", "Walk to the bottom of the stairs."));
@@ -91,7 +95,7 @@ package edu.smith.cs.csc212.spooky;
 			Place science = insert(Place.create("science", "You have found the science section."));
 			science.addExit(new Exit("tunnel0", "There is door with a skull on it... "+EMOJI_SKULL));
 			science.addExit(new Exit("hallway0", "There is a long hallway."));
-			science.addExit( new Exit("cellar", "Head to the cellar."));
+			science.addExit(new Exit("cellar", "Head to the cellar."));
 
 			// Hallway length
 			int hallwayDepth = 4;

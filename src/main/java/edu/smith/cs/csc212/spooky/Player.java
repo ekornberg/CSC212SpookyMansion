@@ -42,7 +42,7 @@ public class Player {
 		} else {
 			System.out.print("You have: ");
 			for (String item : myStuff)
-				System.out.print(item);
+				System.out.print(item + "; ");
 		}
 	}
 	
