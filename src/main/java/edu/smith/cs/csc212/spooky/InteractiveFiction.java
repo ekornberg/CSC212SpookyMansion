@@ -32,6 +32,7 @@ public class InteractiveFiction {
 			
 			System.out.println();
 			System.out.println("... --- ...");
+			// Print description of place
 			here.printDescription();
 			
 			// This place feels familiar if player has been here before
@@ -48,12 +49,13 @@ public class InteractiveFiction {
 			// Show a user the ways out of this place.
 			List<Exit> exits = here.getVisibleExits();
 
+			// Get description of exits
 			for (int i=0; i<exits.size(); i++) {
 				Exit e = exits.get(i);
 				System.out.println(" "+i+". " + e.getDescription());
 			}
 
-			// Figure out what the user wants to do, for now, only "quit" is special.
+			// Figure out what the user wants to do, ("quit" is special)
 			List<String> words = input.getUserWords("?");
 			if (words.size() > 1) {
 				System.out.println("Only give the system 1 word at a time!");
@@ -76,10 +78,12 @@ public class InteractiveFiction {
 			
 			// Help gives player basic information about game.
 			if (action.equals("help")) {
+				System.out.println("Your goal is to escape the building.");
 				System.out.println("To navigate the building, type in the number listed next to the command and hit enter.");
 				System.out.println("To quit the game, type in and hit enter on one of these commands: quit, escape, or q.");
-					// go to the top of the game loop!
-					continue;
+				System.out.println("Try entering the words search, take, and stuff, and see what happens!");	
+				// go to the top of the game loop!
+				continue;
 				}
 			
 			// Player searches room for any secret exits
@@ -95,10 +99,11 @@ public class InteractiveFiction {
 				// Add to player's stuff list
 				player.keep(here.roomStuff());
 				// Remove from list of stuff in room
-				here.take();				
+				here.take();
+				continue;
 			}
 			
-			// Player's stuff
+			// Player can see their stuff
 			if (action.equals("stuff")) {
 				player.stuff();
 				continue;
@@ -123,8 +128,8 @@ public class InteractiveFiction {
 			if (destination.canOpen(player)) {
 				player.moveTo(destination.getTarget());
 			} else {
-				// TODO: some kind of message about it being locked?
-				}
+				System.out.println("The door appears to be locked. Try searching for a key!");
+			}
 		}
 			return player.getPlace();
 	}

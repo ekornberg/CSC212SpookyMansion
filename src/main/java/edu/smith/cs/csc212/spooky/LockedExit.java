@@ -21,8 +21,10 @@ public class LockedExit extends Exit {
 	public boolean canOpen(Player player) {
 		// if the player has the required item, can open exit
 		if (player.myStuff.contains(required)) {
+			System.out.print("I see you have a key. Let's unlock the door.");
 			return true;
 		} else {
+			System.out.println("The door seems to be locked. Maybe you can find a key?");
 			return false;
 		}
 	}

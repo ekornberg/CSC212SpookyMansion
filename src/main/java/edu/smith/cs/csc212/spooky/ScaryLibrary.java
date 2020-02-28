@@ -22,23 +22,26 @@ package edu.smith.cs.csc212.spooky;
 		 * This constructor builds our ScaryLibrary game.
 		 */
 		public ScaryLibrary() {
-			Place lobby = insert(
-					Place.create("lobby", "You are in the lobby of a large, old building.\n"
-							+ "The front doors are locked. How did you get here?"));
+			Place lobby = insert(Place.create("lobby", 
+					"You are in the lobby of a large, old building.\n"
+					+ "The front doors are locked. How did you get here?"));
 			lobby.addExit(new Exit("cellar", "There are stairs leading down."));
 			lobby.addExit(new Exit("fiction", "There are stairs leading up."));
 			lobby.addExit(new Exit("circulation", "There is a wide door."));
 			lobby.addExit(new Exit("reading", "There is a narrow door."));
 
 			String EMOJI_SKULL = "\uD83D\uDC80";
-			Place reading = insert(Place.create("reading", "On the bottom shelf, you see scratched a series of letters and a skull icon ("+EMOJI_SKULL+").\n"
+			Place reading = insert(Place.create("reading", 
+					"On the bottom shelf, you see scratched a series"
+					+ " of letters and a skull icon ("+EMOJI_SKULL+").\n"
 					+ "East.. South.. West.. South.\n" 
 					+ "What could it mean?"));
 			reading.addExit(new Exit("lobby", "Go back."));
 
 			Place cellar = insert(
-					Place.create("cellar", "You have found the cellar of the library.\n" + "It is darker down here.\n"
-							+ "You get the sense a secret is nearby, but you only see the stairs you came from."));
+					Place.create("cellar", "You have found the cellar of the library.\n"
+							+ "It is darker down here.\n" + "You get the sense a secret is nearby,"
+							+ " but you only see the stairs you came from."));
 			cellar.addExit(new Exit("lobby", "There are stairs leading up."));
 			cellar.addExit(new Exit("sinkhole", "There is a sunken hole in the floor that you could climb into..."));
 			cellar.addExit(new Exit("history", "There is a history section filled with biographies and mysteries of the past."));		
@@ -66,6 +69,7 @@ package edu.smith.cs.csc212.spooky;
 			
 			Place rare = insert(Place.create("rare", "There are many books you've never even heard of. They seem to be rare books."));
 			rare.addExit(new Exit("antique", "There's more beyond this area."));
+			// Key to unlock main exit.
 			rare.addItem("key");
 
 			Place balcony = insert(Place.create("balcony", "The night is pitch-black."));
@@ -89,6 +93,7 @@ package edu.smith.cs.csc212.spooky;
 			science.addExit(new Exit("hallway0", "There is a long hallway."));
 			science.addExit( new Exit("cellar", "Head to the cellar."));
 
+			// Hallway length
 			int hallwayDepth = 4;
 			int lastHallwayPart = hallwayDepth - 1;
 			for (int i = 0; i < hallwayDepth; i++) {
@@ -103,12 +108,15 @@ package edu.smith.cs.csc212.spooky;
 					hallwayPart.addExit(new Exit("hallway" + (i + 1), "Go forward.\n" +
 							"You feel the number " + (i + 1) + " scratched into the wall."));
 				} else {
-					hallwayPart.addExit(new Exit("crypt", "There is darkness ahead."));
+					// Locked Exit
+					hallwayPart.addExit(new LockedExit("crypt", "There is an old wooden door with a worn lock.", "key"));
 				}
 			}
-
+			
+			// Main exit
 			Place crypt = insert(Place.terminal("crypt", "You have found the crypt.\n"
-					+ "It is scary here, but there is an exit to outside.\n" + "Maybe you'll be safe out there."));
+					+ "It is scary here, but there is an exit to outside.\n" +
+					"Maybe you'll be safe out there."));
 			
 			// The secret exit
 			Place secretExit = insert(Place.terminal("secretExit", "You have found the crypt.\n"
